@@ -62,5 +62,20 @@ namespace ProjectSGR
                 SelectNextControl((Control)sender, true, true, true, true);
             }
         }
+
+        private void frmCrearReporte_Load(object sender, EventArgs e)
+        {
+            // TODO: esta línea de código carga datos en la tabla 'bdSGRDataSet.tbVehiculo' Puede moverla o quitarla según sea necesario.
+            this.tbVehiculoTableAdapter.Fill(this.bdSGRDataSet.tbVehiculo);
+
+        }
+
+        private void txtPiloto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // Bloquea la tecla presionada
+            }
+        }
     }
 }
