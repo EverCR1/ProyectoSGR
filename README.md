@@ -12,7 +12,7 @@ Proyecto para ADS1 y BDD2
 
 > Clonar Repositorio
 ```sh
-git clone https://github.com/EverCR1/ProjectSGR.git
+git clone https://github.com/EverCR1/ProyectoSGR.git
 
 ```
 
