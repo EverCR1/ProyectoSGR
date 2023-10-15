@@ -1,0 +1,10 @@
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\bin\Debug\ProjectSGR.exe.config
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\bin\Debug\ProjectSGR.exe
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\bin\Debug\ProjectSGR.pdb
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.csproj.AssemblyReference.cache
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.frmPrincipal.resources
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.Properties.Resources.resources
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.csproj.GenerateResource.cache
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.csproj.CoreCompileInputs.cache
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.exe
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.pdb
