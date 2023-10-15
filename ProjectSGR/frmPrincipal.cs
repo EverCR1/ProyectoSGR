@@ -28,7 +28,18 @@ namespace ProjectSGR
             frmLogin.ShowDialog();
         }
 
-        
+        private void crearReporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCrearReporte frmCrearReporte = new frmCrearReporte();
+            frmCrearReporte.ShowDialog();
+        }
 
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmLogin cerrarLogin = new frmLogin();
+            cerrarLogin.ShowDialog();
+            
+        }
     }
 }

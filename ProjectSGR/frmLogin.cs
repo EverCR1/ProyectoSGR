@@ -25,36 +25,44 @@ namespace ProjectSGR
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+
             QueriesTableAdapter adapter = new QueriesTableAdapter();
 
             int? idU = (int?)adapter.Flogin(txtUser.Text, txtPass.Text);
             if (idU > 0)
             {
                 this.Close();
-                //Variables.logeado = Convert.ToInt32(idU);
+                
             }
             else
             {
                 MessageBox.Show("Usuario o Contraseña Incorrecta");
+                txtUser.Focus();
                 //Variables.logeado = 0;
             }
 
-            txtUser.Focus();
+            
         }
 
         private void txtUser_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Down)
             {
                 txtPass.Focus();
             }
+            
         }
 
         private void txtPass_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
+            if (e.KeyData == Keys.Enter || e.KeyData == Keys.Down)
             {
                 btnAceptar.Focus();
+            }
+
+            else if (e.KeyData == Keys.Up)
+            {
+                txtUser.Focus();
             }
         }
     }

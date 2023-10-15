@@ -9,3 +9,4 @@ C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.c
 C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.exe
 C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.pdb
 C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.frmLogin.resources
+C:\Users\Ever Corazón\source\repos\ProjectSGR\ProjectSGR\obj\Debug\ProjectSGR.frmCrearReporte.resources
