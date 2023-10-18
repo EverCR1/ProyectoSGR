@@ -33,10 +33,10 @@ tipoLicencia varchar (25) not null,
 foreign key (idUsuario) references tbUsuario (idUsuario),
 )
 
---Tabla VehÌculo
+--Tabla Veh√≠culo
 create table tbVehiculo(
 idVehiculo int primary key identity(1,1) not null,
-nombre varchar(50) not null,
+nombre varchar(50) unique not null,
 capacidad tinyint not null,
 marca varchar(25) not null,
 color varchar(25) not null,
@@ -51,6 +51,7 @@ foreign key (idUsuario) references tbUsuario (idUsuario),
 --Tabla Reporte
 create table tbReporte(
 idReporte int primary key identity(1,1) not null,
+cantViajes int not null,
 idVehiculo int not null,
 fecha date not null,
 turno tinyint not null,
@@ -86,7 +87,17 @@ foreign key (idReporte) references tbReporte (idReporte) on delete cascade,
 foreign key (idVuelta) references tbVuelta (idVuelta),
 )
 
---FunciÛn para encriptar contraseÒas
+-- Crear un tipo de tabla para IngresosPorViaje
+CREATE TYPE IngresosViaje AS TABLE
+(
+	
+	idReporte int,
+	idVuelta int,
+	Ingreso decimal(8, 2)
+
+)
+
+--Funci√≥n para encriptar contrase√±as
 create function protect(@valor varchar(max))
 returns varbinary(8000)
 as
@@ -96,7 +107,7 @@ Begin
 	return @clave
 end
 
---FunciÛn para desencriptar contraseÒas
+--Funci√≥n para desencriptar contrase√±as
 create function desprotect(@val varbinary(8000))
 returns varchar(max)
 as
@@ -124,6 +135,8 @@ insert into tbUsuario values (1212121212121,'Monica','Caal','alejand',
 dbo.protect('passcaal'),'1990-10-20',1);
 insert into tbUsuario values (3434343434343,'Pail','Perez','pailp',
 dbo.protect('passpail'),'1980-01-10',2);
+insert into tbUsuario values (7878787878787,'Romero','de Paz','romer',
+dbo.protect('passrome'),'1984-08-16',2);
 insert into tbUsuario values (5656565656565,'Ayum','Guzman','guzm1',
 dbo.protect('passguz'),'1991-04-04',3);
 
@@ -131,27 +144,29 @@ select * from tbUsuario;
 
 --Insertar Datos a la tabla tbPiloto
 insert into tbPiloto values (4,'A');
+insert into tbPiloto values (5,'B');
 
 select * from tbPiloto;
 
 --Insertar Datos a la tabla tbVehiculo
 insert into tbVehiculo values ('Rabinalerita',20,'Hiace','Azul','Activo',1,1);
+insert into tbVehiculo values ('Salamateca',16,'KIA','Roja','Activo',4,1);
 
 select * from tbVehiculo;
 
 --Insertar Datos a la tabla tbVuelta
-insert into tbVuelta values ('Rabinal-Salam· 1');
-insert into tbVuelta values ('Salam·-Rabinal 1');
-insert into tbVuelta values ('Rabinal-Salam· 2');
-insert into tbVuelta values ('Salam·-Rabinal 2');
-insert into tbVuelta values ('Rabinal-Salam· 3');
-insert into tbVuelta values ('Salam·-Rabinal 3');
+insert into tbVuelta values ('Rabinal-Salam√° 1');
+insert into tbVuelta values ('Salam√°-Rabinal 1');
+insert into tbVuelta values ('Rabinal-Salam√° 2');
+insert into tbVuelta values ('Salam√°-Rabinal 2');
+insert into tbVuelta values ('Rabinal-Salam√° 3');
+insert into tbVuelta values ('Salam√°-Rabinal 3');
 
 select * from tbVuelta;
 
 --Insertar Datos a la tabla tbReporte
-insert into tbReporte values (1,'2023-10-13',6,80,50,250,30,0,600,410,190,'sc',1);
-insert into tbReporte values (1,'2023-10-14',5,80,50,300,30,0,700,460,240,'sc',1);
+insert into tbReporte values (4,1,'2023-10-13',6,80,50,250,30,0,600,410,190,'sc',1);
+insert into tbReporte values (4,1,'2023-10-14',5,80,50,300,30,0,700,460,240,'sc',1);
 
 select * from tbReporte;
 
@@ -169,20 +184,3 @@ insert into tbReportexVuelta values (2,4,150);
 select * from tbReportexVuelta;
 
 
---FunciÛn para el Login
-create function Flogin(@Usuario varchar(50), @Pass varchar(50))
-returns int
-as begin
-	Declare @idUsuario as int
-	set @idUsuario = (select idUsuario from tbUsuario
-					where Usuario = @Usuario and
-					DECRYPTBYPASSPHRASE('sgr', Pass) = @Pass)
-	return @idUsuario
-end
-
---- Procedimiento para el Registro
-CREATE PROCEDURE FRegistro(@Usuario varchar(100), @Pass varchar(max), @idPer int)
-AS BEGIN
-    INSERT INTO tbUsuario (Usuario, Pass, idPersona)
-    VALUES (@Usuario, ENCRYPTBYPASSPHRASE('sgr', @Pass), @idPer)
-END
