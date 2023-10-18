@@ -34,6 +34,8 @@
             this.txtPass = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.bdSGRDataSet1 = new ProjectSGR.bdSGRDataSet();
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -95,6 +97,11 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // bdSGRDataSet1
+            // 
+            this.bdSGRDataSet1.DataSetName = "bdSGRDataSet";
+            this.bdSGRDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -110,6 +117,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio de Sesión";
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +131,6 @@
         private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private bdSGRDataSet bdSGRDataSet1;
     }
 }

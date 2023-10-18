@@ -34,7 +34,6 @@
             this.btnAddViajes = new System.Windows.Forms.Button();
             this.panelReporte = new System.Windows.Forms.Panel();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.panelViajes = new System.Windows.Forms.Panel();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtComentario = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -61,9 +60,11 @@
             this.datePick = new System.Windows.Forms.DateTimePicker();
             this.cBoxVehiculo = new System.Windows.Forms.ComboBox();
             this.bdSGRDataSet = new ProjectSGR.bdSGRDataSet();
+            this.panelViajes = new System.Windows.Forms.Panel();
             this.tbVehiculoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbVehiculoTableAdapter = new ProjectSGR.bdSGRDataSetTableAdapters.tbVehiculoTableAdapter();
-            this.btnRegresar = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.panelReporte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTurno)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet)).BeginInit();
@@ -72,15 +73,16 @@
             // 
             // txtCantViajes
             // 
-            this.txtCantViajes.Location = new System.Drawing.Point(161, 12);
+            this.txtCantViajes.Location = new System.Drawing.Point(174, 18);
             this.txtCantViajes.Name = "txtCantViajes";
             this.txtCantViajes.Size = new System.Drawing.Size(100, 22);
             this.txtCantViajes.TabIndex = 0;
+            this.txtCantViajes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantViajes_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 12);
+            this.label1.Location = new System.Drawing.Point(36, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 16);
             this.label1.TabIndex = 1;
@@ -88,7 +90,7 @@
             // 
             // btnAddViajes
             // 
-            this.btnAddViajes.Location = new System.Drawing.Point(267, 12);
+            this.btnAddViajes.Location = new System.Drawing.Point(298, 18);
             this.btnAddViajes.Name = "btnAddViajes";
             this.btnAddViajes.Size = new System.Drawing.Size(88, 25);
             this.btnAddViajes.TabIndex = 2;
@@ -99,7 +101,6 @@
             // panelReporte
             // 
             this.panelReporte.Controls.Add(this.btnCrear);
-            this.panelReporte.Controls.Add(this.panelViajes);
             this.panelReporte.Controls.Add(this.btnCancelar);
             this.panelReporte.Controls.Add(this.txtComentario);
             this.panelReporte.Controls.Add(this.label13);
@@ -140,14 +141,6 @@
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
-            // panelViajes
-            // 
-            this.panelViajes.Location = new System.Drawing.Point(397, 248);
-            this.panelViajes.Name = "panelViajes";
-            this.panelViajes.Size = new System.Drawing.Size(359, 110);
-            this.panelViajes.TabIndex = 4;
-            this.panelViajes.Visible = false;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(261, 335);
@@ -156,6 +149,7 @@
             this.btnCancelar.TabIndex = 28;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // txtComentario
             // 
@@ -164,15 +158,17 @@
             this.txtComentario.Name = "txtComentario";
             this.txtComentario.Size = new System.Drawing.Size(452, 76);
             this.txtComentario.TabIndex = 27;
+            this.txtComentario.Text = "SC";
+            this.txtComentario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtComentario_KeyPress);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(206, 214);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(245, 16);
+            this.label13.Size = new System.Drawing.Size(238, 16);
             this.label13.TabIndex = 26;
-            this.label13.Text = "Si tienes un comentario, escríbelo abajo";
+            this.label13.Text = "Si tiene un comentario, escríbalo abajo";
             // 
             // label12
             // 
@@ -190,11 +186,12 @@
             this.txtCapital.ReadOnly = true;
             this.txtCapital.Size = new System.Drawing.Size(106, 22);
             this.txtCapital.TabIndex = 24;
+            this.txtCapital.Text = "0.00";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(209, 165);
+            this.label10.Location = new System.Drawing.Point(224, 168);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(95, 16);
             this.label10.TabIndex = 23;
@@ -202,12 +199,13 @@
             // 
             // txtTotalEgresos
             // 
-            this.txtTotalEgresos.Location = new System.Drawing.Point(318, 162);
+            this.txtTotalEgresos.Location = new System.Drawing.Point(331, 165);
             this.txtTotalEgresos.Name = "txtTotalEgresos";
             this.txtTotalEgresos.ReadOnly = true;
             this.txtTotalEgresos.Size = new System.Drawing.Size(100, 22);
             this.txtTotalEgresos.TabIndex = 22;
-            this.txtTotalEgresos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalEgresos_KeyPress);
+            this.txtTotalEgresos.Text = "0.00";
+            this.txtTotalEgresos.TextChanged += new System.EventHandler(this.txtTotalEgresos_TextChanged);
             // 
             // label11
             // 
@@ -220,12 +218,13 @@
             // 
             // txtTotalIngresos
             // 
-            this.txtTotalIngresos.Location = new System.Drawing.Point(103, 162);
+            this.txtTotalIngresos.Location = new System.Drawing.Point(112, 165);
             this.txtTotalIngresos.Name = "txtTotalIngresos";
             this.txtTotalIngresos.ReadOnly = true;
             this.txtTotalIngresos.Size = new System.Drawing.Size(100, 22);
             this.txtTotalIngresos.TabIndex = 20;
-            this.txtTotalIngresos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalIngresos_KeyPress);
+            this.txtTotalIngresos.Text = "0.00";
+            this.txtTotalIngresos.TextChanged += new System.EventHandler(this.txtTotalIngresos_TextChanged);
             // 
             // label9
             // 
@@ -242,6 +241,7 @@
             this.txtExtras.Name = "txtExtras";
             this.txtExtras.Size = new System.Drawing.Size(73, 22);
             this.txtExtras.TabIndex = 18;
+            this.txtExtras.TextChanged += new System.EventHandler(this.txtExtras_TextChanged);
             this.txtExtras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExtras_KeyPress);
             // 
             // label8
@@ -259,6 +259,7 @@
             this.txtViaticos.Name = "txtViaticos";
             this.txtViaticos.Size = new System.Drawing.Size(73, 22);
             this.txtViaticos.TabIndex = 16;
+            this.txtViaticos.TextChanged += new System.EventHandler(this.txtViaticos_TextChanged);
             this.txtViaticos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtViaticos_KeyPress);
             // 
             // label7
@@ -276,6 +277,7 @@
             this.txtCombustible.Name = "txtCombustible";
             this.txtCombustible.Size = new System.Drawing.Size(73, 22);
             this.txtCombustible.TabIndex = 14;
+            this.txtCombustible.TextChanged += new System.EventHandler(this.txtCombustible_TextChanged);
             this.txtCombustible.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCombustible_KeyPress);
             // 
             // label6
@@ -293,6 +295,7 @@
             this.txtAyudante.Name = "txtAyudante";
             this.txtAyudante.Size = new System.Drawing.Size(100, 22);
             this.txtAyudante.TabIndex = 12;
+            this.txtAyudante.TextChanged += new System.EventHandler(this.txtAyudante_TextChanged);
             this.txtAyudante.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAyudante_KeyPress);
             // 
             // label5
@@ -310,6 +313,7 @@
             this.txtPiloto.Name = "txtPiloto";
             this.txtPiloto.Size = new System.Drawing.Size(100, 22);
             this.txtPiloto.TabIndex = 10;
+            this.txtPiloto.TextChanged += new System.EventHandler(this.txtPiloto_TextChanged);
             this.txtPiloto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPiloto_KeyPress);
             // 
             // label4
@@ -374,6 +378,14 @@
             this.bdSGRDataSet.DataSetName = "bdSGRDataSet";
             this.bdSGRDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // panelViajes
+            // 
+            this.panelViajes.Location = new System.Drawing.Point(539, 55);
+            this.panelViajes.Name = "panelViajes";
+            this.panelViajes.Size = new System.Drawing.Size(359, 375);
+            this.panelViajes.TabIndex = 4;
+            this.panelViajes.Visible = false;
+            // 
             // tbVehiculoBindingSource
             // 
             this.tbVehiculoBindingSource.DataMember = "tbVehiculo";
@@ -383,23 +395,34 @@
             // 
             this.tbVehiculoTableAdapter.ClearBeforeFill = true;
             // 
-            // btnRegresar
+            // label14
             // 
-            this.btnRegresar.Location = new System.Drawing.Point(361, 12);
-            this.btnRegresar.Name = "btnRegresar";
-            this.btnRegresar.Size = new System.Drawing.Size(75, 28);
-            this.btnRegresar.TabIndex = 0;
-            this.btnRegresar.Text = "Regresar";
-            this.btnRegresar.UseVisualStyleBackColor = true;
-            this.btnRegresar.Visible = false;
-            this.btnRegresar.Click += new System.EventHandler(this.btnRegresar_Click);
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(662, 21);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(132, 16);
+            this.label14.TabIndex = 5;
+            this.label14.Text = "Registro de Ingresos";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(811, 18);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(87, 28);
+            this.btnLimpiar.TabIndex = 6;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Visible = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // frmCrearReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 668);
-            this.Controls.Add(this.btnRegresar);
+            this.ClientSize = new System.Drawing.Size(952, 446);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.panelViajes);
             this.Controls.Add(this.panelReporte);
             this.Controls.Add(this.btnAddViajes);
             this.Controls.Add(this.label1);
@@ -454,6 +477,7 @@
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Panel panelViajes;
-        private System.Windows.Forms.Button btnRegresar;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
