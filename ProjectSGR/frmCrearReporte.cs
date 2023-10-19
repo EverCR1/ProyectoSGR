@@ -402,7 +402,7 @@ namespace ProjectSGR
             panelViajes.Controls.Clear();
             btnLimpiar.Visible = false;
         }
-
+        //prueba
         private void txtComentario_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
