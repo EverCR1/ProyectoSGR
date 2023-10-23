@@ -36,8 +36,13 @@ namespace ProjectSGR.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+<<<<<<< HEAD
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-J1QATOM;Initial Catalog=bdSGR;Persist Security Info=True;User" +
             " ID=olsend;Password=coco123")]
+=======
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ALEJANDRINA;Initial Catalog=bdSGR;Persist Security Info=True;User ID=" +
+            "ualejandrina;Password=1234")]
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
         public string bdSGRConnectionString1 {
             get {
                 return ((string)(this["bdSGRConnectionString1"]));

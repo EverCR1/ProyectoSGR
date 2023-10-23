@@ -36,16 +36,18 @@ namespace ProjectSGR
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            
             frmLogin cerrarLogin = new frmLogin();
             cerrarLogin.ShowDialog();
-            
+            this.Close();
+
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
 
         private void crearUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -57,6 +59,12 @@ namespace ProjectSGR
         {
             frmEditarUsuario frmEditarUsuario = new frmEditarUsuario(); 
             frmEditarUsuario.ShowDialog();
+
+        private void editarReporteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVerReporte frmVerReporte = new frmVerReporte();
+            frmVerReporte.ShowDialog();
+
         }
     }
 }

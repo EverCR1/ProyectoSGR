@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.txtCantViajes = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAddViajes = new System.Windows.Forms.Button();
@@ -58,17 +57,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nTurno = new System.Windows.Forms.NumericUpDown();
             this.datePick = new System.Windows.Forms.DateTimePicker();
-            this.cBoxVehiculo = new System.Windows.Forms.ComboBox();
-            this.bdSGRDataSet = new ProjectSGR.bdSGRDataSet();
             this.panelViajes = new System.Windows.Forms.Panel();
-            this.tbVehiculoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tbVehiculoTableAdapter = new ProjectSGR.bdSGRDataSetTableAdapters.tbVehiculoTableAdapter();
             this.label14 = new System.Windows.Forms.Label();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.cBoxVehiculo = new System.Windows.Forms.ComboBox();
             this.panelReporte.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTurno)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbVehiculoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCantViajes
@@ -101,6 +95,7 @@
             // 
             // panelReporte
             // 
+            this.panelReporte.Controls.Add(this.cBoxVehiculo);
             this.panelReporte.Controls.Add(this.btnCrear);
             this.panelReporte.Controls.Add(this.btnCancelar);
             this.panelReporte.Controls.Add(this.txtComentario);
@@ -126,7 +121,6 @@
             this.panelReporte.Controls.Add(this.label2);
             this.panelReporte.Controls.Add(this.nTurno);
             this.panelReporte.Controls.Add(this.datePick);
-            this.panelReporte.Controls.Add(this.cBoxVehiculo);
             this.panelReporte.Location = new System.Drawing.Point(24, 55);
             this.panelReporte.Name = "panelReporte";
             this.panelReporte.Size = new System.Drawing.Size(475, 375);
@@ -139,7 +133,7 @@
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(101, 23);
             this.btnCrear.TabIndex = 28;
-            this.btnCrear.Text = "Crear";
+            this.btnCrear.Text = "Guardar";
             this.btnCrear.UseVisualStyleBackColor = true;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
@@ -364,22 +358,6 @@
             this.datePick.Size = new System.Drawing.Size(306, 22);
             this.datePick.TabIndex = 5;
             // 
-            // cBoxVehiculo
-            // 
-            this.cBoxVehiculo.DataSource = this.bdSGRDataSet;
-            this.cBoxVehiculo.DisplayMember = "tbVehiculo.nombre";
-            this.cBoxVehiculo.FormattingEnabled = true;
-            this.cBoxVehiculo.Location = new System.Drawing.Point(103, 3);
-            this.cBoxVehiculo.Name = "cBoxVehiculo";
-            this.cBoxVehiculo.Size = new System.Drawing.Size(147, 24);
-            this.cBoxVehiculo.TabIndex = 4;
-            this.cBoxVehiculo.ValueMember = "tbVehiculo.idVehiculo";
-            // 
-            // bdSGRDataSet
-            // 
-            this.bdSGRDataSet.DataSetName = "bdSGRDataSet";
-            this.bdSGRDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // panelViajes
             // 
             this.panelViajes.Location = new System.Drawing.Point(539, 55);
@@ -388,15 +366,6 @@
             this.panelViajes.TabIndex = 4;
             this.panelViajes.Visible = false;
             this.panelViajes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelViajes_Paint);
-            // 
-            // tbVehiculoBindingSource
-            // 
-            this.tbVehiculoBindingSource.DataMember = "tbVehiculo";
-            this.tbVehiculoBindingSource.DataSource = this.bdSGRDataSet;
-            // 
-            // tbVehiculoTableAdapter
-            // 
-            this.tbVehiculoTableAdapter.ClearBeforeFill = true;
             // 
             // label14
             // 
@@ -418,6 +387,14 @@
             this.btnLimpiar.Visible = false;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // cBoxVehiculo
+            // 
+            this.cBoxVehiculo.FormattingEnabled = true;
+            this.cBoxVehiculo.Location = new System.Drawing.Point(104, 6);
+            this.cBoxVehiculo.Name = "cBoxVehiculo";
+            this.cBoxVehiculo.Size = new System.Drawing.Size(136, 24);
+            this.cBoxVehiculo.TabIndex = 29;
+            // 
             // frmCrearReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -437,50 +414,46 @@
             this.panelReporte.ResumeLayout(false);
             this.panelReporte.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nTurno)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbVehiculoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtCantViajes;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddViajes;
-        private System.Windows.Forms.Panel panelReporte;
-        private System.Windows.Forms.ComboBox cBoxVehiculo;
         private bdSGRDataSet bdSGRDataSet;
-        private System.Windows.Forms.BindingSource tbVehiculoBindingSource;
         private bdSGRDataSetTableAdapters.tbVehiculoTableAdapter tbVehiculoTableAdapter;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nTurno;
-        private System.Windows.Forms.DateTimePicker datePick;
-        private System.Windows.Forms.TextBox txtPiloto;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtViaticos;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtCombustible;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtAyudante;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtExtras;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtTotalEgresos;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtTotalIngresos;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtCapital;
-        private System.Windows.Forms.TextBox txtComentario;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Button btnCrear;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Panel panelViajes;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnLimpiar;
+        public System.Windows.Forms.TextBox txtCantViajes;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button btnAddViajes;
+        public System.Windows.Forms.Panel panelReporte;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.NumericUpDown nTurno;
+        public System.Windows.Forms.DateTimePicker datePick;
+        public System.Windows.Forms.TextBox txtPiloto;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.TextBox txtViaticos;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox txtCombustible;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.TextBox txtAyudante;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.TextBox txtExtras;
+        public System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox txtTotalEgresos;
+        public System.Windows.Forms.Label label11;
+        public System.Windows.Forms.TextBox txtTotalIngresos;
+        public System.Windows.Forms.Label label12;
+        public System.Windows.Forms.TextBox txtCapital;
+        public System.Windows.Forms.TextBox txtComentario;
+        public System.Windows.Forms.Label label13;
+        public System.Windows.Forms.Button btnCrear;
+        public System.Windows.Forms.Button btnCancelar;
+        public System.Windows.Forms.Panel panelViajes;
+        public System.Windows.Forms.Label label14;
+        public System.Windows.Forms.Button btnLimpiar;
+        public System.Windows.Forms.ComboBox cBoxVehiculo;
     }
 }

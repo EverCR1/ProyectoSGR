@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.userToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verPerfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,14 @@
             this.impresionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+<<<<<<< HEAD
+=======
+            this.bdSGRDataSet = new ProjectSGR.bdSGRDataSet();
+            this.bdSGRDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -67,7 +75,7 @@
             this.acercaDeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -116,32 +124,33 @@
             this.buscarReporteToolStripMenuItem,
             this.eliminarReporteToolStripMenuItem});
             this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(82, 26);
             this.reportesToolStripMenuItem.Text = "Reportes";
             // 
             // crearReporteToolStripMenuItem
             // 
             this.crearReporteToolStripMenuItem.Name = "crearReporteToolStripMenuItem";
-            this.crearReporteToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.crearReporteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.crearReporteToolStripMenuItem.Text = "Crear Reporte";
             this.crearReporteToolStripMenuItem.Click += new System.EventHandler(this.crearReporteToolStripMenuItem_Click);
             // 
             // editarReporteToolStripMenuItem
             // 
             this.editarReporteToolStripMenuItem.Name = "editarReporteToolStripMenuItem";
-            this.editarReporteToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
-            this.editarReporteToolStripMenuItem.Text = "Editar Reporte";
+            this.editarReporteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editarReporteToolStripMenuItem.Text = "Ver Reportes";
+            this.editarReporteToolStripMenuItem.Click += new System.EventHandler(this.editarReporteToolStripMenuItem_Click);
             // 
             // buscarReporteToolStripMenuItem
             // 
             this.buscarReporteToolStripMenuItem.Name = "buscarReporteToolStripMenuItem";
-            this.buscarReporteToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.buscarReporteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.buscarReporteToolStripMenuItem.Text = "Buscar Reporte";
             // 
             // eliminarReporteToolStripMenuItem
             // 
             this.eliminarReporteToolStripMenuItem.Name = "eliminarReporteToolStripMenuItem";
-            this.eliminarReporteToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.eliminarReporteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.eliminarReporteToolStripMenuItem.Text = "Eliminar Reporte";
             // 
             // vehículosToolStripMenuItem
@@ -236,6 +245,19 @@
             this.eOMToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.eOMToolStripMenuItem.Text = "EOM";
             // 
+<<<<<<< HEAD
+=======
+            // bdSGRDataSet
+            // 
+            this.bdSGRDataSet.DataSetName = "bdSGRDataSet";
+            this.bdSGRDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // bdSGRDataSetBindingSource
+            // 
+            this.bdSGRDataSetBindingSource.DataSource = this.bdSGRDataSet;
+            this.bdSGRDataSetBindingSource.Position = 0;
+            // 
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -249,6 +271,8 @@
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdSGRDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,6 +305,8 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eOMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.BindingSource bdSGRDataSetBindingSource;
+        private bdSGRDataSet bdSGRDataSet;
     }
 }
 

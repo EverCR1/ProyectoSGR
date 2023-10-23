@@ -65,5 +65,52 @@ namespace ProjectSGR
                 txtUser.Focus();
             }
         }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUser_Enter(object sender, EventArgs e)
+        { 
+            if (txtUser.Text == "Usuario")
+            {
+                    txtUser.Text = "";
+            }
+        }
+
+        private void txtUser_Leave(object sender, EventArgs e)
+        {
+            if (txtUser.Text == "")
+            {
+                txtUser.Text = "Usuario";
+            }
+        }
+
+        private void txtPass_Enter(object sender, EventArgs e)
+        {
+            if (txtPass.Text == "Contraseña")
+            {
+                txtPass.Text = "";
+                txtPass.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtPass_Leave(object sender, EventArgs e)
+        {
+            if (txtPass.Text == "")
+            {
+                txtPass.Text = "Contraseña";
+                txtPass.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void btnAceptar_Enter(object sender, EventArgs e)
+        {
+            btnAceptar.FlatAppearance.BorderSize = 1;
+            btnAceptar.FlatAppearance.BorderColor = Color.White; 
+        }
+
+        
     }
 }

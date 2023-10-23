@@ -13,10 +13,17 @@
     <Setting Name="bdSGRConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+<<<<<<< HEAD
   &lt;ConnectionString&gt;Data Source=DESKTOP-J1QATOM;Initial Catalog=bdSGR;Persist Security Info=True;User ID=olsend;Password=coco123&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=DESKTOP-J1QATOM;Initial Catalog=bdSGR;Persist Security Info=True;User ID=olsend;Password=coco123</Value>
+=======
+  &lt;ConnectionString&gt;Data Source=ALEJANDRINA;Initial Catalog=bdSGR;Persist Security Info=True;User ID=ualejandrina;Password=1234&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=ALEJANDRINA;Initial Catalog=bdSGR;Persist Security Info=True;User ID=ualejandrina;Password=1234</Value>
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
     </Setting>
   </Settings>
 </SettingsFile>

@@ -20,7 +20,10 @@ namespace ProjectSGR
         public List<System.Windows.Forms.TextBox> textBoxes = new List<System.Windows.Forms.TextBox>();
         public List<decimal> listaInge = new List<decimal>();
         Reporte reporte = new Reporte();
-
+        frmVerReporte frmVerReporte = new frmVerReporte();
+        public bool controlI = false;
+        public string Operacion = "Crear";
+        public int idd;
         public frmCrearReporte()
         {
             InitializeComponent();
@@ -47,16 +50,15 @@ namespace ProjectSGR
 
 
         //Función para crear TextBox dinámicamente
-        private void crearTextBox()
+        public void crearTextBox(int cantidad)
         {
-            // Captura la cantidad ingresada por el usuario en el TextBox
-            if (int.TryParse(txtCantViajes.Text, out int cantidadViajes))
-            {
-                // Limpia cualquier TextBox previamente creado
+            //int cantidadViajes = int.Parse(txtCantViajes.Text);
+
+            // Limpia cualquier TextBox previamente creado
                 panelViajes.Controls.Clear();
 
                 // Crea dinámicamente TextBox para las ganancias por cada viaje
-                for (int i = 1; i <= cantidadViajes; i++)
+                for (int i = 1; i <= cantidad; i++)
                 {
 
                     var label = new Label
@@ -75,6 +77,7 @@ namespace ProjectSGR
                     };
 
                     textBox.KeyDown += TextBox_KeyDown;
+                    textBox.KeyPress += TextBox_KeyPress;
 
                     // Asocia el evento TextChanged a una función de suma
                     textBox.TextChanged += TextBox_TextChanged;
@@ -87,27 +90,37 @@ namespace ProjectSGR
 
                 }
 
-            }
-            else
+        }
+    
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
-                MessageBox.Show("Ingrese una cantidad válida de viajes");
+                e.Handled = true; // Bloquea la tecla presionada
             }
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             CalcularTotalIngresos();
-
-            //System.Windows.Forms.TextBox textBoxe = (System.Windows.Forms.TextBox)sender;
-            //decimal valor = decimal.Parse(textBoxe.Text);
-            //listaInge.Add(valor);
         }
 
         private void btnAddViajes_Click(object sender, EventArgs e)
         {
-            panelViajes.Visible = true;
-            crearTextBox();
-            btnLimpiar.Visible = true;
+            //int comprobarV = int.Parse(txtCantViajes.Text);
+            int.TryParse(txtCantViajes.Text, out int comprobarV);
+
+            if (comprobarV > 0 && comprobarV < 11){
+                panelViajes.Visible = true;
+                crearTextBox(comprobarV);
+                btnLimpiar.Visible = true;
+                controlI = true;
+            }
+            else
+            {
+                MessageBox.Show("Ingrese una cantidad válida de viajes");
+            }
+
         }
 
 
@@ -130,9 +143,17 @@ namespace ProjectSGR
 
         private void frmCrearReporte_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'bdSGRDataSet.tbVehiculo' Puede moverla o quitarla según sea necesario.
-            this.tbVehiculoTableAdapter.Fill(this.bdSGRDataSet.tbVehiculo);
+            // TODO: esta línea de código carga datos en la tabla 'bdSGRDataSet1.tbVehiculo' Puede moverla o quitarla según sea necesario.
+            //this.tbVehiculoTableAdapter1.Fill(this.bdSGRDataSet1.tbVehiculo);
+            if(Operacion == "Crear")
+            {
+                ListarVehi();
+            }
+            else
+            {
 
+            }
+            //ListarVehi();
         }
 
         private void txtPiloto_KeyPress(object sender, KeyPressEventArgs e)
@@ -225,62 +246,155 @@ namespace ProjectSGR
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             bool errorMostrado = false;
             listaInge.Clear(); //Limpia la lista
 
             // Recorre los TextBox dinámicos y registra sus valores en la lista
             foreach (Control control in panelViajes.Controls)
+=======
+            //int ide = frmVerReporte.idRepor;
+            if (Operacion == "Crear")
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
             {
-                if (control is System.Windows.Forms.TextBox textBox)
+                bool verificado = true;
+                listaInge.Clear(); //Limpia la lista
+
+                if (VerificarTextBoxLlenos())
                 {
-                    if (decimal.TryParse(textBox.Text, out decimal valor))
+                    if (controlI)
                     {
-                        listaInge.Add(valor);
+                        //Recorrido de los TextBox dinámicos
+                        foreach (Control control in panelViajes.Controls)
+                        {
+                            if (control is System.Windows.Forms.TextBox textBox)
+                            {
+                                if (string.IsNullOrWhiteSpace(textBox.Text))
+                                {
+                                    verificado = false;
+
+                                    MessageBox.Show("Por favor, ingrese un valor correcto en los Ingresos"
+                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break; // Si uno de los TextBox está vacío, se detiene la verificación
+                                }
+                                else if (decimal.TryParse(textBox.Text, out decimal valor))
+                                {
+                                    listaInge.Add(valor);
+                                }
+                            }
+                        }
                     }
                     else
                     {
-                        if (!errorMostrado)
-                        {
-                            MessageBox.Show("Por favor, ingrese un valor correcto en los Ingresos",
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            errorMostrado=true;
-                        }
-                        
+                        MessageBox.Show("Por favor, debe registrar los Ingresos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Recorre los TextBox dinámicos y registra sus valores en la lista
+                        verificado = false;
                     }
                 }
-            }
 
-            if (VerificarTextBoxLlenos())
-            {
-                //Obtenemos los valores del formulario
-                reporte.CantViajes = int.Parse(txtCantViajes.Text);
-                reporte.IdVehiculo = (int)cBoxVehiculo.SelectedValue;
-                reporte.Fecha = datePick.Value;
-                reporte.Turno = (int)nTurno.Value;
-                reporte.PagoPiloto = int.Parse(txtPiloto.Text);
-                reporte.PagoAyudante = int.Parse(txtAyudante.Text);
-                reporte.PagoCombustible = int.Parse(txtCombustible.Text);
-                reporte.PagoViaticos = int.Parse(txtViaticos.Text);
-                reporte.PagoExtras = decimal.Parse(txtExtras.Text);
-                reporte.TotalIngresos = decimal.Parse(txtTotalIngresos.Text);
-                reporte.TotalEgresos = decimal.Parse(txtTotalEgresos.Text);
-                reporte.Capital = decimal.Parse(txtCapital.Text);
-                reporte.Comentario = txtComentario.Text;
-                reporte.IdUsuario = 1;
-                reporte.Listado = listaInge;
-
-                reporte.CrearReporte();
-
-                foreach (int valor in listaInge)
+                else
                 {
-                    Console.WriteLine(valor);
+                    MessageBox.Show("Por favor, debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    verificado = false;
                 }
 
-                this.Close();
+                if (verificado)
+                {
+                    //Obtenemos los valores del formulario
+                    reporte.CantViajes = int.Parse(txtCantViajes.Text);
+                    reporte.IdVehiculo = (int)cBoxVehiculo.SelectedValue;
+                    reporte.Fecha = datePick.Value;
+                    reporte.Turno = (int)nTurno.Value;
+                    reporte.PagoPiloto = int.Parse(txtPiloto.Text);
+                    reporte.PagoAyudante = int.Parse(txtAyudante.Text);
+                    reporte.PagoCombustible = int.Parse(txtCombustible.Text);
+                    reporte.PagoViaticos = int.Parse(txtViaticos.Text);
+                    reporte.PagoExtras = decimal.Parse(txtExtras.Text);
+                    reporte.TotalIngresos = decimal.Parse(txtTotalIngresos.Text);
+                    reporte.TotalEgresos = decimal.Parse(txtTotalEgresos.Text);
+                    reporte.Capital = decimal.Parse(txtCapital.Text);
+                    reporte.Comentario = txtComentario.Text;
+                    reporte.IdUsuario = 1;
+                    reporte.Listado = listaInge;
+
+                    reporte.CrearReporte();
+                    MessageBox.Show("Reporte creado exitosamente");
+                    this.Close();
+                    //ListarVehi();
+
+                }
             }
-            else
-            {
-                MessageBox.Show("Por favor, debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if(Operacion == "Editar"){
+
+                bool verificado = true;
+                //listaInge.Clear(); //Limpia la lista
+
+                if (VerificarTextBoxLlenos())
+                {
+                    if (controlI)
+                    {
+                        //Recorrido de los TextBox dinámicos
+                        foreach (Control control in panelViajes.Controls)
+                        {
+                            if (control is System.Windows.Forms.TextBox textBox)
+                            {
+                                if (string.IsNullOrWhiteSpace(textBox.Text))
+                                {
+                                    verificado = false;
+
+                                    MessageBox.Show("Por favor, ingrese un valor correcto en los Ingresos"
+                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    break; // Si uno de los TextBox está vacío, se detiene la verificación
+                                }
+                                else if (decimal.TryParse(textBox.Text, out decimal valor))
+                                {
+                                    listaInge.Add(valor);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Por favor, debe registrar los Ingresos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // Recorre los TextBox dinámicos y registra sus valores en la lista
+                        verificado = false;
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("Por favor, debe llenar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    verificado = false;
+                }
+
+                if (verificado)
+                {
+                    //Obtenemos los valores del formulario
+                    reporte.CantViajes = int.Parse(txtCantViajes.Text);
+                    reporte.IdVehiculo = (int)cBoxVehiculo.SelectedValue;
+                    reporte.Fecha = datePick.Value;
+                    reporte.Turno = (int)nTurno.Value;
+                    reporte.PagoPiloto = int.Parse(txtPiloto.Text);
+                    reporte.PagoAyudante = int.Parse(txtAyudante.Text);
+                    reporte.PagoCombustible = int.Parse(txtCombustible.Text);
+                    reporte.PagoViaticos = int.Parse(txtViaticos.Text);
+                    reporte.PagoExtras = decimal.Parse(txtExtras.Text);
+                    reporte.TotalIngresos = decimal.Parse(txtTotalIngresos.Text);
+                    reporte.TotalEgresos = decimal.Parse(txtTotalEgresos.Text);
+                    reporte.Capital = decimal.Parse(txtCapital.Text);
+                    reporte.Comentario = txtComentario.Text;
+                    reporte.IdUsuario = 1;
+                    reporte.Listado = listaInge;
+
+                    
+                    Console.WriteLine(idd);
+                    reporte.EditarReporte(idd);
+                    Operacion = "Crear";
+                    MessageBox.Show("Reporte actualizado exitosamente");
+                    this.Close();
+                    //ListarVehi();
+                }
+
             }
 
         }
@@ -380,6 +494,7 @@ namespace ProjectSGR
                 !string.IsNullOrWhiteSpace(txtAyudante.Text) &&
                 !string.IsNullOrWhiteSpace(txtCombustible.Text) &&
                 !string.IsNullOrWhiteSpace(txtViaticos.Text) &&
+                !string.IsNullOrWhiteSpace(txtExtras.Text) &&
                 !string.IsNullOrWhiteSpace(txtCantViajes.Text)
             )
             {
@@ -404,6 +519,7 @@ namespace ProjectSGR
         {
             panelViajes.Controls.Clear();
             btnLimpiar.Visible = false;
+            controlI = false;
         }
 
         //prueba
@@ -416,6 +532,7 @@ namespace ProjectSGR
             }
         }
 
+<<<<<<< HEAD
         private void panelViajes_Paint(object sender, PaintEventArgs e)
         {
 
@@ -430,5 +547,16 @@ namespace ProjectSGR
         {
 
         }
+=======
+        public void ListarVehi()
+        {
+            cBoxVehiculo.DataSource = reporte.ListarVe();
+            cBoxVehiculo.DisplayMember = "Nombre";
+            cBoxVehiculo.ValueMember = "IdVehiculo";
+        }
+
+        
+>>>>>>> 1a711b3ec87296464c9c16e909abb73207133b3a
     }
 }
+
