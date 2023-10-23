@@ -46,5 +46,17 @@ namespace ProjectSGR
         {
             Application.Exit();
         }
+
+        private void crearUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCrearUsuario frmCrearUsuario = new frmCrearUsuario();    
+            frmCrearUsuario.ShowDialog();
+        }
+
+        private void editarUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEditarUsuario frmEditarUsuario = new frmEditarUsuario(); 
+            frmEditarUsuario.ShowDialog();
+        }
     }
 }

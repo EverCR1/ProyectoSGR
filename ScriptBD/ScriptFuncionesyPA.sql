@@ -22,6 +22,7 @@ AS BEGIN
 END
 
 
+
 --Procedimiento para la Creación de Reportes
 CREATE PROCEDURE pCrearReporte (@CantViajes int, @Vehiculo int, @Fecha date, @turno tinyint, @pPiloto int,
 @pAyudante int, @pCombustible int, @pViaticos int, @pExtras decimal(8,2), @tIngresos decimal(8,2),
@@ -89,3 +90,78 @@ select * from tbReporte;
 select * from tbReportexVuelta;
 
 delete from tbReporte where idReporte = 3;
+
+
+CREATE PROCEDURE pCrearReporte (@CantViajes int, @Vehiculo int, @Fecha date, @turno tinyint, @pPiloto int,
+@pAyudante int, @pCombustible int, @pViaticos int, @pExtras decimal(8,2), @tIngresos decimal(8,2),
+@tEgresos decimal(8,2), @Capital decimal(8,2), @Comentario text, @Usuario int,
+@Ingresos IngresosViaje readonly)
+AS BEGIN
+
+	DECLARE @NuevoReporteID INT;
+	BEGIN TRANSACTION;
+
+    BEGIN TRY
+		INSERT INTO tbReporte values (@CantViajes, @Vehiculo, @Fecha, @turno, 
+		@pPiloto, @pAyudante, @pCombustible, @pViaticos, @pExtras, @tIngresos,
+		@tEgresos, @Capital, @Comentario, @Usuario);
+		
+		SET @NuevoReporteID = SCOPE_IDENTITY();
+
+		INSERT INTO tbReportexVuelta (idReporte,idVuelta,Ingreso)
+        SELECT @NuevoReporteID, idVuelta, Ingreso
+        FROM @Ingresos;
+
+	COMMIT;
+
+	END TRY
+    BEGIN CATCH
+        -- Si se produce un error, revierte la transacción
+        ROLLBACK;
+        
+		INSERT INTO ErrorLog (ErrorTime, ErrorMessage)
+		VALUES (GETDATE(), ERROR_MESSAGE());
+
+    END CATCH;
+END;
+
+
+
+
+
+
+--Procedimiento para la creación de usuarios
+
+CREATE PROCEDURE pCrearUsuario( @DPI bigint, @nombres varchar(75), @apellidos varchar(75), 
+@username varchar(50),@pass varchar(max),@fechaNac date, @idCargo int)
+AS BEGIN
+    INSERT INTO tbUsuario (DPI,nombres,apellidos,username,pass,fechaNac,idCargo)
+    VALUES (@DPI,@nombres,@apellidos,@username, ENCRYPTBYPASSPHRASE('sgr', @pass), @fechaNac,@idCargo)
+END
+
+
+CREATE PROCEDURE pUsuarioLicencia
+    @DPI BIGINT,
+    @nombres VARCHAR(75),
+    @apellidos VARCHAR(75),
+    @username VARCHAR(50),
+    @pass VARCHAR(MAX),
+    @fechaNac DATE,
+    @idCargo INT,
+    @tipoLicencia VARCHAR(5)
+AS
+BEGIN
+    -- Declarar una variable para almacenar el ID generado
+    DECLARE @NuevoID INT;
+
+    -- Insertar en la tabla de usuarios
+    INSERT INTO dbo.tbUsuario (DPI, nombres, apellidos, username, pass, fechaNac, idCargo)
+    VALUES (@DPI, @nombres, @apellidos, @username, ENCRYPTBYPASSPHRASE('sgr', @pass), @fechaNac, @idCargo);
+
+    -- Obtener el ID generado
+    SET @NuevoID = SCOPE_IDENTITY();
+
+    -- Insertar en la tabla de licencias
+    INSERT INTO dbo.tbPiloto (idUsuario, tipoLicencia)
+    VALUES (@NuevoID, @tipoLicencia);
+END;

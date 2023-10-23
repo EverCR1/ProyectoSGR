@@ -77,6 +77,7 @@
             this.txtCantViajes.Name = "txtCantViajes";
             this.txtCantViajes.Size = new System.Drawing.Size(100, 22);
             this.txtCantViajes.TabIndex = 0;
+            this.txtCantViajes.TextChanged += new System.EventHandler(this.txtCantViajes_TextChanged);
             this.txtCantViajes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantViajes_KeyPress);
             // 
             // label1
@@ -130,6 +131,7 @@
             this.panelReporte.Name = "panelReporte";
             this.panelReporte.Size = new System.Drawing.Size(475, 375);
             this.panelReporte.TabIndex = 3;
+            this.panelReporte.Paint += new System.Windows.Forms.PaintEventHandler(this.panelReporte_Paint);
             // 
             // btnCrear
             // 
@@ -385,6 +387,7 @@
             this.panelViajes.Size = new System.Drawing.Size(359, 375);
             this.panelViajes.TabIndex = 4;
             this.panelViajes.Visible = false;
+            this.panelViajes.Paint += new System.Windows.Forms.PaintEventHandler(this.panelViajes_Paint);
             // 
             // tbVehiculoBindingSource
             // 

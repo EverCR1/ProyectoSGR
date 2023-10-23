@@ -225,7 +225,6 @@ namespace ProjectSGR
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-
             bool errorMostrado = false;
             listaInge.Clear(); //Limpia la lista
 
@@ -285,6 +284,10 @@ namespace ProjectSGR
             }
 
         }
+
+
+
+
 
         private void CalcularTotalEgresos()
         {
@@ -402,6 +405,7 @@ namespace ProjectSGR
             panelViajes.Controls.Clear();
             btnLimpiar.Visible = false;
         }
+
         //prueba
         private void txtComentario_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -410,6 +414,21 @@ namespace ProjectSGR
                 btnCrear.Focus();
                 e.Handled = true;
             }
+        }
+
+        private void panelViajes_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtCantViajes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelReporte_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
